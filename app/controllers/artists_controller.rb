@@ -9,6 +9,13 @@ class ArtistsController < ApplicationController
 
   def new
     @artist = Artist.new
+    @preference = Preference.first
+
+    if @preference.allow_create_artists == true
+      render :new
+    else
+      redirect_to '/artists'
+    end
   end
 
   def create
